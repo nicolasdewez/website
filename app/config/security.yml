@@ -1,0 +1,31 @@
+security:
+    encoders:
+            AppBundle\Entity\User: bcrypt
+
+    providers:
+        admins:
+            entity:
+                class: AppBundle:User
+                property: username
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        admin:
+            provider: admins
+            pattern: ^/secured-area
+            form_login:
+                login_path: app_login
+                check_path: app_login_check
+                default_target_path: app_admin_home
+                always_use_default_target_path: true
+            logout:
+                path: app_logout
+                target: app_login
+
+        website:
+            pattern: ^/
+            anonymous: true

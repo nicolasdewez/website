@@ -1,0 +1,16 @@
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+
+app_admin:
+    resource: "@AppBundle/Controller/Admin/"
+    type:     annotation
+    prefix: "/secured-area"
+
+app_login_check:
+    path: "/secured-area/login-check"
+    methods: ["POST"]
+
+app_logout:
+    path: "/secured-area/logout"
+    methods: ["GET"]

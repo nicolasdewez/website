@@ -1,0 +1,15 @@
+{% macro nb_elements(count) %}
+    {% if count %}
+        <div>
+            {{ count }} element{% if count > 1 %}s{% endif %}
+        </div>
+    {% endif %}
+{% endmacro %}
+
+{% macro active(state) %}
+    {% if state %}
+        <div class="glyphicon glyphicon-ok"></div>
+    {% else %}
+        <div class="glyphicon glyphicon-remove"></div>
+    {% endif %}
+{% endmacro %}

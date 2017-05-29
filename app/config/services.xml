@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="app.user.change_password" class="AppBundle\Service\ChangePasswordUser">
+            <argument type="service" id="doctrine.orm.default_entity_manager" />
+            <argument type="service" id="security.password_encoder" />
+        </service>
+
+        <service id="app.post.get_set_body" class="AppBundle\Service\GetAndSetBodyInPost">
+            <argument type="string">%post_path%</argument>
+        </service>
+
+        <service id="app.slug.define" class="AppBundle\Service\DefineSlug" />
+
+        <service id="app.subscriber.post_in_database" class="AppBundle\EventListener\PostInDatabaseSubscriber">
+            <argument type="service" id="app.post.get_set_body" />
+            <argument type="service" id="app.slug.define" />
+            <tag name="doctrine.event_subscriber" />
+        </service>
+
+        <service id="app.extension.markdown" class="AppBundle\Twig\MarkdownExtension" public="false">
+            <argument type="service">
+                <service class="Parsedown">
+                </service>
+            </argument>
+            <tag name="twig.extension" />
+        </service>
+
+        <service id="app.send_mail" class="AppBundle\Service\SendMail">
+            <argument type="service" id="mailer" />
+            <argument type="service" id="twig" />
+        </service>
+
+        <service id="app.manager.visit" class="AppBundle\Service\VisitManager">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+        </service>
+
+        <service id="app.listener.visit" class="AppBundle\EventListener\VisitListener">
+            <argument type="service" id="app.manager.visit" />
+            <tag name="kernel.event_listener" event="kernel.request" />
+        </service>
+    </services>
+</container>

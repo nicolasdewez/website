@@ -1,0 +1,39 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{{ parent() }} - Articles{% endblock %}
+
+{% block body %}
+    {% import 'macro/table.html.twig' as table %}
+    {% import 'macro/link.html.twig' as link %}
+
+    <h2>Articles</h2>
+
+    {{ table.nb_elements(elements|length) }}
+
+    <a href="{{ path('app_admin_post_create') }}">Ajouter un article</a>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Libellé</th>
+            <th>Date</th>
+            <th>Tags</th>
+            <th>Publication</th>
+            <th>Aperçu</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for element in elements %}
+            <tr>
+                <td><a href="{{ path('app_admin_post_edit', { 'id': element.id }) }}">{{ element.title }}</a></td>
+                <td>{{ element.writingDate|date('d/m/Y') }}</td>
+                <td>{{ element.tagsIntoString }}</td>
+                <td>{{ table.active(element.published) }}</td>
+                <td>{{ link.show(path('app_admin_post_preview', {'id': element.id}), 'app_preview_post') }}</td>
+            </tr>
+        {% else %}
+            <tr><th colspan="5">Aucun élément</th></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

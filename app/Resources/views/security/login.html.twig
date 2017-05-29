@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <title>Nicolas Dewez - Accès sécurisé</title>
+
+    <link rel="stylesheet" href="{{ asset('bootstrap-3.3.7/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('app/admin.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+
+    <div class="secured-block">
+        <h2>Identification</h2>
+
+        {% if error %}
+            {{ include('common/flashMessage.html.twig', { 'type': 'danger', 'message': error.message }) }}
+        {% endif %}
+
+        {{ form(form, {'action': path('app_login_check')}) }}
+    </div>
+
+</body>
+
+</html>

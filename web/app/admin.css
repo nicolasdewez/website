@@ -1,0 +1,105 @@
+html, body {
+    height: 100%;
+}
+
+.clear {
+    clear: both;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+}
+.userBar {
+    margin-bottom: 0;
+    border-radius: 0;
+}
+.header {
+    border-bottom: 1px solid #e7e7e7;
+    background-image: -webkit-linear-gradient(#f2f4f6, white);
+    background-image: linear-gradient(#f2f4f6, white);
+}
+.header-container {
+    padding: 0 25px;
+    line-height: 70px;
+}
+.header-container-link {
+    text-decoration: none;
+    display: block;
+}
+.header-container-link-project,
+.header-container-link-app,
+.header-container-link > h1 {
+    display: inline-block;
+    vertical-align: middle;
+    color: #434a54;
+}
+.header-container-link > h1 {
+    color: #434a54;
+    font-family: Antonio, Arial, serif;
+    font-style: normal;
+    font-size: 2.5em;
+    font-weight: bold;
+    padding: 0 50px 0 7px;
+    margin: 0;
+}
+.header-container-link-project,
+.header-container-link-app {
+    font-size: 2.5em;
+}
+.menu {
+    border-radius: 0;
+    border-top: 0;
+    border-bottom: 4px solid #187cb8;
+    background-image: -webkit-linear-gradient(white, #f2f4f6);
+    background-image: linear-gradient(white, #f2f4f6);
+}
+.menu a {
+    font-weight: normal;
+}
+.menu .nav > .dropdown.open > a,
+.menu .nav > .dropdown.open > a:hover {
+    background-color: #187cb8;
+    color: #FFFFFF;
+}
+.menu .nav > .active > a,
+.menu .nav > .active > a:hover,
+.menu .nav > li > a:hover {
+    background-color: #187cb8;
+    color: #FFFFFF;
+}
+.menu .dropdown-menu > li > a:hover {
+    background-color: #187cb8;
+    color: #FFFFFF;
+}
+.body {
+    padding: 0 25px;
+}
+.body .blockLinks {
+    margin: 1em 0;
+}
+.flash p {
+    padding: 15px;
+}
+.table.table-hover > tbody > tr:hover {
+    background-color: #187cb8;
+    color: #FFFFFF;
+}
+.table.table-hover > tbody > tr:hover a:hover {
+    color: white;
+}
+
+label.required:after {
+    content: " *";
+    color: red;
+}
+
+textarea.form-control {
+    height: 400px;
+}
+
+.secured-block {
+    margin: 0 auto;
+    width: 400px;
+    position: relative;
+    top: 40%;
+    transform: translateY(-50%);
+}

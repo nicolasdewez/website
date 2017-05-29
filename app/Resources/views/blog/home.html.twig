@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Blog | {{ parent() }}{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+            {% for post in posts %}
+                {{ include('blog/post_preview.html.twig', {'post': post, 'last': loop.last }, with_context = false) }}
+            {% endfor %}
+
+
+            <ul class="pager">
+                {{ include('blog/pager.html.twig', {
+                        'page': page,
+                        'nbPages': nbPages,
+                        'previousUrl': path('app_blog', {'page': page-1}),
+                        'nextUrl': path('app_blog', {'page': page+1})
+                    })
+                }}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

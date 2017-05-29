@@ -1,0 +1,19 @@
+<div class="post-preview">
+    <a href="{{ path('app_blog_post', {'slug': post.slug}) }}">
+        <h2 class="post-title">
+            {{ post.title }}
+        </h2>
+    </a>
+    <h4 class="post-subtitle">
+        {% for tag in post.tags if tag.active %}
+            <span class="glyphicon glyphicon-tag"></span>
+            <a href="{{ path('app_blog_tag', {'title': tag.title, 'page': 1}) }}">{{ tag.title }}</a> &nbsp;
+        {% endfor %}
+    </h4>
+
+    <p class="post-meta">Posté le {{ post.writingDate|date('d/m/Y') }}</p>
+</div>
+
+{% if not last %}
+    <hr>
+{% endif %}

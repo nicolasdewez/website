@@ -1,0 +1,9 @@
+{% set isStrict = strict|default(false) %}
+
+{% if isStrict and pathInfo is same as(url) %}
+    <li class="active"><a href="#">{{ title }} <span class="sr-only">(current)</span></a></li>
+{% elseif not isStrict and pathInfo starts with url %}
+    <li class="active"><a href="#">{{ title }} <span class="sr-only">(current)</span></a></li>
+{% else %}
+    <li><a href="{{ url }}">{{ title }}</a></li>
+{% endif %}

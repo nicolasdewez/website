@@ -1,0 +1,3 @@
+{% macro show(href, target) %}
+    <a href="{{ href }}" target="{{ target|default('_self') }}" class="glyphicon glyphicon-search"></a>
+{% endmacro %}
