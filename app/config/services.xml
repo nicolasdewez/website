@@ -38,10 +38,5 @@
         <service id="app.manager.visit" class="AppBundle\Service\VisitManager">
             <argument type="service" id="doctrine.orm.entity_manager" />
         </service>
-
-        <service id="app.listener.visit" class="AppBundle\EventListener\VisitListener">
-            <argument type="service" id="app.manager.visit" />
-            <tag name="kernel.event_listener" event="kernel.request" />
-        </service>
     </services>
 </container>

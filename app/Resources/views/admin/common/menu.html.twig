@@ -3,6 +3,5 @@
         {{ include('admin/common/menu-item.html.twig', { 'title': 'Accueil', 'pathInfo': app.request.pathInfo, 'url': path('app_admin_home'), 'strict': true }) }}
         {{ include('admin/common/menu-item.html.twig', { 'title': 'Tags', 'pathInfo': app.request.pathInfo, 'url': path('app_admin_tag_list') }) }}
         {{ include('admin/common/menu-item.html.twig', { 'title': 'Articles', 'pathInfo': app.request.pathInfo, 'url': path('app_admin_post_list') }) }}
-        {{ include('admin/common/menu-item.html.twig', { 'title': 'Statistiques', 'pathInfo': app.request.pathInfo, 'url': path('app_admin_visit') }) }}
     </ul>
 </div>
