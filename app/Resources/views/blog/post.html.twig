@@ -16,7 +16,7 @@
         <p class="post-meta">Posté le {{ post.writingDate|date('d/m/Y') }}</p>
     </div>
 
-    <div>
+    <div class="post-body">
         {% autoescape false %}
             {{ markdown_parse(post.body) }}
         {% endautoescape %}
