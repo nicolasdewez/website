@@ -1,0 +1,8 @@
+app:
+    resource: ../../src/Controller/
+    type: annotation
+
+app_admin:
+    resource: ../../src/Controller/Admin/
+    type: annotation
+    prefix: "/secured-area"

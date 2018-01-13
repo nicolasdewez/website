@@ -3,23 +3,7 @@
 set -e
 cd "`dirname "$0"`/.."
 
-source bin/env_var
-
 composer install --no-progress --no-interaction
-
-# Replace in parameters.yml
-sed -i "s,%%BDD_NICOLAS_DEWEZ_HOST%%,$BDD_NICOLAS_DEWEZ_HOST,g" app/config/parameters.yml
-sed -i "s,'%%BDD_NICOLAS_DEWEZ_PORT%%',$BDD_NICOLAS_DEWEZ_PORT,g" app/config/parameters.yml
-sed -i "s,%%BDD_NICOLAS_DEWEZ_NAME%%,$BDD_NICOLAS_DEWEZ_NAME,g" app/config/parameters.yml
-sed -i "s,%%BDD_NICOLAS_DEWEZ_USER%%,$BDD_NICOLAS_DEWEZ_USER,g" app/config/parameters.yml
-sed -i "s,%%BDD_NICOLAS_DEWEZ_PASSWORD%%,$BDD_NICOLAS_DEWEZ_PASSWORD,g" app/config/parameters.yml
-
-sed -i "s,%%MAILER_HOST%%,$MAILER_HOST,g" app/config/parameters.yml
-sed -i "s,%%MAILER_PORT%%,$MAILER_PORT,g" app/config/parameters.yml
-sed -i "s,%%MAILER_USER%%,$MAILER_USER,g" app/config/parameters.yml
-sed -i "s,%%MAILER_PASSWORD%%,$MAILER_PASSWORD,g" app/config/parameters.yml
-
-rm -rf var/cache/dev
 
 bin/console doctrine:database:create --if-not-exists
 bin/console doctrine:migrations:migrate --no-interaction
