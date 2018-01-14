@@ -6,6 +6,7 @@ use App\Entity\Post;
 use App\Generator\DefineSlug;
 use App\Service\GetAndSetBodyInPost;
 use Doctrine\ORM\Event\LifecycleEventArgs;
+use Doctrine\ORM\Event\PreUpdateEventArgs;
 
 class PostInDatabaseListener
 {
@@ -37,7 +38,7 @@ class PostInDatabaseListener
         $this->saveBody($post);
     }
 
-    public function preUpdate(Post $post, LifecycleEventArgs $args): void
+    public function preUpdate(Post $post, PreUpdateEventArgs $args): void
     {
         $this->saveSlug($post);
         $this->saveUpdatedDate($post);

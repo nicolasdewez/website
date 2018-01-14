@@ -6,15 +6,15 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment as Twig;
 
-class ServicesController
+class FreelanceController
 {
     /**
-     * @Route("/services", name="app_services")
+     * @Route("/freelance", name="app_freelance")
      */
     public function indexAction(Twig $twig): Response
     {
         return new Response(
-            $twig->render('services/index.html.twig')
+            $twig->render('freelance/index.html.twig')
         );
     }
 }

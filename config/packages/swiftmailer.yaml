@@ -1,3 +1,4 @@
 swiftmailer:
+#    transport: "sendmail"
     url: '%env(WEBSITE_MAILER_URL)%'
     spool: { type: 'memory' }

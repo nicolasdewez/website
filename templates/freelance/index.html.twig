@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Freelance | {{ parent() }}{% endblock %}
+
+{% block header_style %}background-image: url({{ asset('bootstrap-clean-blog/img/about-bg.jpg') }}{% endblock %}
+
+{% block body %}
+    <h2>Freelance</h2>
+
+    Je vous propose différentes prestations allant de la conception au développement en passant par le conseil.
+    <br>
+    Que ce soit la réalisation d'un site web ou d'une application métier plus complexe, je suis disponible pour vous aider durant les différentes étapes de votre projet.
+    <br>
+    Vous trouverez ci-dessous une liste non exhaustive des prestations proposées. N'hésitez pas à me contacter pour plus d'informations.
+
+    <hr>
+
+    <section class="job">
+        <h3><span class="glyphicon glyphicon-pushpin"></span> Prestations Proposées</h3>
+    </section>
+
+    <h4>Développement web / application métier</h4>
+
+    <ul class="description">
+        <li>Conception / analyse.</li>
+        <li>Réalisation.</li>
+        <li>Utilisation de frameworks, CMS.</li>
+    </ul>
+
+
+    <h4>Expertise / conseil</h4>
+
+    <ul class="description">
+        <li>Audit de code source.</li>
+        <li>Optimisations.</li>
+        <li>Conseils.</li>
+        <li>Architecture.</li>
+        <li>Bonnes pratiques et industrialisation.</li>
+    </ul>
+
+
+
+    <hr>
+
+    <section class="job">
+        <h3><span class="glyphicon glyphicon-pushpin"></span> Disponibilité et tarifs</h3>
+    </section>
+
+    Pour toutes questions concernant mes disponibilités et mes tarifs je vous invite à me contacter.
+    <br>
+    Vous pouvez utiliser cette <a href="{{ path('app_contact') }}">page</a>.
+{% endblock %}
