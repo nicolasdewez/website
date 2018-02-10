@@ -1,0 +1,36 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{{ parent() }} - Clients{% endblock %}
+
+{% block body %}
+    {% import 'macro/table.html.twig' as table %}
+
+    <h2>Clients</h2>
+
+    {{ table.nb_elements(elements|length) }}
+
+    <a href="{{ path('app_admin_customer_create') }}">Ajouter un client</a>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Prénom Nom</th>
+            <th>Société</th>
+            <th>Nombre de devis</th>
+            <th>Nombre de factures</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for element in elements %}
+            <tr>
+                <td><a href="{{ path('app_admin_customer_edit', { 'id': element.id }) }}">{{ element.firstName }} {{ element.lastName }}</a></td>
+                <td>{{ element.company }}</td>
+                <td>{{ element.estimates|length }}</td>
+                <td>{{ element.bills|length }}</td>
+            </tr>
+        {% else %}
+            <tr><th colspan="4">Aucun élément</th></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

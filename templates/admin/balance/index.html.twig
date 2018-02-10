@@ -1,0 +1,36 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{{ parent() }} - Bilan{% endblock %}
+
+{% block body %}
+    <h2>Bilan</h2>
+
+    <div class="col-md-3">
+        {{ form(form) }}
+    </div>
+
+    <div class="list-group col-md-3">
+        <a href="#" class="list-group-item active">
+            <span class="badge">{{ data.total }}</span>
+            {{ year }}
+        </a>
+        <a href="#" class="list-group">
+
+            {% for keyQuarter, quarter in data.quarter %}
+                <a href="#" class="list-group-item list-group-item-success">
+                    <span class="badge">{{ quarter.total }}</span>
+                    Trimestre {{ keyQuarter }}
+                </a>
+
+                <a href="#" class="list-group">
+                    {% for keyMonth, month in quarter.month %}
+                        <a href="#" class="list-group-item">
+                            <span class="badge">{{ month }}</span>
+                            {{ keyMonth }}
+                        </a>
+                    {% endfor %}
+                </a>
+            {% endfor %}
+        </a>
+    </div>
+{% endblock %}

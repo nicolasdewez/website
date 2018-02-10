@@ -2,6 +2,10 @@
     {{ include('common/flashMessage.html.twig', { 'type': 'danger', 'message': message }) }}
 {% endfor %}
 
+{% for message in app.session.flashBag.get('warning') %}
+    {{ include('common/flashMessage.html.twig', { 'type': 'warning', 'message': message }) }}
+{% endfor %}
+
 {% for message in app.session.flashBag.get('notice') %}
     {{ include('common/flashMessage.html.twig', { 'type': 'info', 'message': message }) }}
 {% endfor %}

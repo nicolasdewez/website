@@ -1,0 +1,25 @@
+{% block _estimate_lines_row %}
+    {{ form_label(form) }} <a href="#" rel="#" title="Ajouter"><span class="glyphicon glyphicon-plus"></span></a>
+    <div class="collection" data-prototype="{% filter escape %}{% include 'admin/themes/prototype_estimate.html.twig' with { 'form': form.vars.prototype } %}{% endfilter %}">
+        {{ block('collection_widget') }}
+    </div>
+{% endblock _estimate_lines_row %}
+
+{% block _estimate_lines_entry_label '' %}
+
+{% block _estimate_lines_entry_row %}
+    {% include 'admin/themes/prototype_estimate.html.twig' %}
+{% endblock _estimate_lines_entry_row %}
+
+{% block _bill_lines_row %}
+    {{ form_label(form) }} <a href="#" rel="#" title="Ajouter"><span class="glyphicon glyphicon-plus"></span></a>
+    <div class="collection" data-prototype="{% filter escape %}{% include 'admin/themes/prototype_bill.html.twig' with { 'form': form.vars.prototype } %}{% endfilter %}">
+        {{ block('collection_widget') }}
+    </div>
+{% endblock _bill_lines_row %}
+
+{% block _bill_lines_entry_label '' %}
+
+{% block _bill_lines_entry_row %}
+    {% include 'admin/themes/prototype_bill.html.twig' %}
+{% endblock _bill_lines_entry_row %}

@@ -153,6 +153,15 @@ app-php-cs: ## Run php-cs-fixer to fix
 app-phpstan: ## Run phpstan
 	@$(EXEC) $(APP) vendor/bin/phpstan analyse --level 2 --configuration phpstan.neon src
 
+.PHONY: app-workflow
+app-workflow: ## Dump workflow (ie. make app-workflow name="estimate")
+ifndef name
+	@echo "To use the 'workflow' target, you MUST add the 'name' argument"
+	exit 1
+endif
+	@mkdir -p build
+	@$(EXEC) $(APP) bin/console workflow:dump $(name) | dot -Tpng -o doc/workflow-$(name).png
+
 .PHONY: app-clear
 app-clear: ## Clear cache & logs
 	rm -rf var/cache/* var/logs/*

@@ -3,20 +3,20 @@
 namespace App\EventListener;
 
 use App\Entity\Post;
-use App\Generator\DefineSlug;
+use App\Generator\DefineSlugGenerator;
 use App\Service\GetAndSetBodyInPost;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 
-class PostInDatabaseListener
+class PostListener
 {
     /** @var GetAndSetBodyInPost */
     private $getAndSetBodyInPost;
 
-    /** @var DefineSlug */
+    /** @var DefineSlugGenerator */
     private $defineSlug;
 
-    public function __construct(GetAndSetBodyInPost $getAndSetBodyInPost, DefineSlug $defineSlug)
+    public function __construct(GetAndSetBodyInPost $getAndSetBodyInPost, DefineSlugGenerator $defineSlug)
     {
         $this->getAndSetBodyInPost = $getAndSetBodyInPost;
         $this->defineSlug = $defineSlug;

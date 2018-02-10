@@ -1,8 +1,9 @@
-# Put parameters here that don't need to change on each machine where the app is deployed
-# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
     post_path: "%kernel.project_dir%/data/posts"
+    prefix_estimate_code: 'DEV-'
+    prefix_bill_code: 'FACT-'
+    SIREN: '%env(WEBSITE_APP_SIREN)%'
 
 services:
     # default configuration for services in *this* file
@@ -12,6 +13,7 @@ services:
         public: false
         bind:
             $postPath: "%post_path%"
+            $SIREN: "%SIREN%"
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
@@ -25,10 +27,41 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
+    App\Creator\EstimateIntoPdfCreator:
+        arguments:
+            $directory: '%kernel.cache_dir%'
 
-    App\EventListener\PostInDatabaseListener:
+    App\Creator\BillIntoPdfCreator:
+        arguments:
+            $directory: '%kernel.cache_dir%'
+
+    App\EventListener\PostListener:
         tags:
             - { name: doctrine.orm.entity_listener }
+
+    App\EventListener\BillListener:
+        tags:
+            - { name: doctrine.event_listener, event: onFlush }
+
+    App\EventListener\EstimateListener:
+        tags:
+            - { name: doctrine.event_listener, event: onFlush }
+
+    App\Generator\EstimateCodeGenerator:
+        arguments:
+            $prefixCode: "%prefix_estimate_code%"
+
+    App\Generator\BillCodeGenerator:
+        arguments:
+            $prefixCode: "%prefix_bill_code%"
+
+    Google_Client:
+        class: \Google_Client
+        calls:
+            - [setDeveloperKey, ["AIzaSyDnt7n4VPgv8Hixx1z3oSZFSSOSPNrhasg"]]
+
+    Google_Service_Drive:
+        class: \Google_Service_Drive
 
     Parsedown:
         class: \Parsedown

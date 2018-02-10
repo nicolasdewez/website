@@ -69,7 +69,7 @@ class PostController
     {
         $post = new Post();
         $form = $this->formFactory->create(PostType::class, $post);
-        $form->add('submit', SubmitType::class, ['label' => 'submit', 'attr' => ['class' => 'btn btn-success']]);
+        $form->add('submit', SubmitType::class, ['label' => 'Enregistrer', 'attr' => ['class' => 'btn btn-success']]);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -92,7 +92,7 @@ class PostController
     public function editAction(Request $request, Post $post): Response
     {
         $form = $this->formFactory->create(PostType::class, $post);
-        $form->add('submit', SubmitType::class, ['label' => 'submit', 'attr' => ['class' => 'btn btn-success']]);
+        $form->add('submit', SubmitType::class, ['label' => 'Enregistrer', 'attr' => ['class' => 'btn btn-success']]);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

@@ -69,7 +69,7 @@ class TagController
     {
         $tag = new Tag();
         $form = $this->formFactory->create(TagType::class, $tag);
-        $form->add('submit', SubmitType::class, ['label' => 'submit', 'attr' => ['class' => 'btn btn-success']]);
+        $form->add('submit', SubmitType::class, ['label' => 'Enregistrer', 'attr' => ['class' => 'btn btn-success']]);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -92,7 +92,7 @@ class TagController
     public function editAction(Request $request, Tag $tag): Response
     {
         $form = $this->formFactory->create(TagType::class, $tag);
-        $form->add('submit', SubmitType::class, ['label' => 'submit', 'attr' => ['class' => 'btn btn-success']]);
+        $form->add('submit', SubmitType::class, ['label' => 'Enregistrer', 'attr' => ['class' => 'btn btn-success']]);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

@@ -2,7 +2,7 @@
 
 namespace App\Generator;
 
-class DefineSlug
+class DefineSlugGenerator
 {
     public function build(string $title): string
     {

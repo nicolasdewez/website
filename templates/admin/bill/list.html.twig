@@ -1,0 +1,56 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{{ parent() }} - Factures{% endblock %}
+
+{% block body %}
+    {% import 'macro/table.html.twig' as table %}
+
+    <h2>Factures</h2>
+
+    {{ table.nb_elements(elements|length) }}
+
+    <a href="{{ path('app_admin_bill_create') }}">Ajouter une facture</a>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Code</th>
+            <th>Client</th>
+            <th>Date</th>
+            <th>Date d'échéance</th>
+            <th>Montant</th>
+            <th>Etat</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for element in elements %}
+            <tr>
+                <td>{{ element.code }}</td>
+                <td>{{ element.customer.displayName }}</td>
+                <td>{{ element.date|date('d/m/Y') }}</td>
+                <td>{{ element.deadline|date('d/m/Y') }}</td>
+                <td>{{ element.totalPrice }}</td>
+                <td>{{ element.state }}</td>
+                <td>
+                    {% if workflow_can(element, constant('App\\Workflow\\BillDefinitionWorflow::TRANS_EDIT')) %}
+                        <a href="{{ path('app_admin_bill_edit', { 'id': element.id }) }}">Modifier</a>
+                    {% endif %}
+
+                    {% if workflow_can(element, constant('App\\Workflow\\BillDefinitionWorflow::TRANS_ACQUIT')) %}
+                        <a href="{{ path('app_admin_bill_acquit', { 'id': element.id }) }}">Acquitter</a>
+                    {% endif %}
+
+                    {% if workflow_can(element, constant('App\\Workflow\\BillDefinitionWorflow::TRANS_CANCEL')) %}
+                        <a href="{{ path('app_admin_bill_cancel', { 'id': element.id }) }}">Annuler</a>
+                    {% endif %}
+
+                    <a href="{{ path('app_admin_bill_display', { 'id': element.id }) }}">Voir</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr><th colspan="7">Aucun élément</th></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends 'admin/common/base_pdf.html.twig' %}
+
+{% block body %}
+    <header>
+        <div style="text-align: right">
+            <img src="{{ absolute_url(asset('app/logo.png')) }}" />
+        </div>
+
+        <div style="border:1px solid #000; background: #444; color: #fff; font-size: 150%; text-align: center; padding: 10px;">
+            <strong>DEVIS</strong>
+        </div>
+
+        <div class="div50">
+            <p style="line-height: 140%">
+                <strong>Nicolas DEWEZ</strong><br/>
+                AUBY, 59950<br/>
+                <strong>{{ SIREN }}</strong>
+            </p>
+
+            <br/><br/><br/>
+
+            <p style="line-height: 140%">
+                Devis à destination de :<br/>
+                <strong>{{ estimate.customer.displayName }}</strong>
+            </p>
+        </div>
+
+        <div class="div50" style="text-align: right">
+            <br/>
+            <div class="div50" style="line-height: 140%; text-align: right">
+                Réféfrence :
+                <br />
+                Etat :&nbsp;
+            </div>
+            <div class="div50" style="line-height: 140%; text-align: left">
+                {{ estimate.code }}
+                <br/>
+                {{ estimate.titleState }}
+            </div>
+
+            <div class="clear"></div>
+            <br/><br/>
+
+            <div class="div70" style="line-height: 140%; text-align: right">
+                Date du devis :
+                <br />
+                <strong>Devis valable jusqu'au :</strong>&nbsp;
+            </div>
+            <div class="div30" style="line-height: 140%; text-align: left">
+                {{ estimate.date|date('d/m/Y') }}
+                <br/>
+                <strong>{{ estimate.deadline|date('d/m/Y') }}</strong>
+            </div>
+
+            <div class="clear"></div>
+        </div>
+
+        <div class="clear"></div>
+    </header>
+
+    <br/>
+
+    <table width="100%">
+        <tr style="background: #444; color: #fff;">
+            <th width="5%" height="45px">#</th>
+            <th>Description</th>
+            <th width="15%">Quantité</th>
+            <th width="15%">Prix unitaire</th>
+            <th width="15%">Montant</th>
+        </tr>
+        {% for line in estimate.lines %}
+        <tr>
+            <td height="45px" align="center" style="border-bottom: 1px solid #aaa;">{{ loop.index }}</td>
+            <td style="border-bottom: 1px solid #aaa;">{{ line.title }}</td>
+            <td align="center" style="border-bottom: 1px solid #aaa;">{{ line.quantity }}</td>
+            <td align="center" style="border-bottom: 1px solid #aaa;">{{ line.unitPrice|number_format(2, '.', ' ') }}</td>
+            <th style="border-bottom: 1px solid #aaa;">{{ line.totalPrice|number_format(2, '.', ' ') }}</th>
+        </tr>
+        {% endfor%}
+        <tr>
+            <td height="45px" colspan="3"></td>
+            <th style="background: #ccc">Montant total</th>
+            <th style="background: #ccc">{{ estimate.totalPrice|number_format(2, '.', ' ') }}</th>
+        </tr>
+    </table>
+
+    <br/>
+
+    <p>
+        Remarque complémentaire : <br/>
+        {{ estimate.comment|nl2br }}
+    </p>
+{% endblock %}

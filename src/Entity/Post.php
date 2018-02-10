@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Table(name="post")
  * @ORM\Entity(repositoryClass="App\Repository\PostRepository")
- * @ORM\EntityListeners({"App\EventListener\PostInDatabaseListener"})
+ * @ORM\EntityListeners({"App\EventListener\PostListener"})
  */
 class Post
 {

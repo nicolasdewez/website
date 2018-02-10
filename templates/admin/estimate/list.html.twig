@@ -1,0 +1,60 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{{ parent() }} - Devis{% endblock %}
+
+{% block body %}
+    {% import 'macro/table.html.twig' as table %}
+
+    <h2>Devis</h2>
+
+    {{ table.nb_elements(elements|length) }}
+
+    <a href="{{ path('app_admin_estimate_create') }}">Ajouter un devis</a>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Code</th>
+            <th>Client</th>
+            <th>Date</th>
+            <th>Date d'échéance</th>
+            <th>Montant</th>
+            <th>Etat</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for element in elements %}
+            <tr>
+                <td>{{ element.code }}</td>
+                <td>{{ element.customer.displayName }}</td>
+                <td>{{ element.date|date('d/m/Y') }}</td>
+                <td>{{ element.deadline|date('d/m/Y') }}</td>
+                <td>{{ element.totalPrice }}</td>
+                <td>{{ element.state }}</td>
+                <td>
+                    {% if workflow_can(element, constant('App\\Workflow\\EstimateDefinitionWorflow::TRANS_EDIT')) %}
+                        <a href="{{ path('app_admin_estimate_edit', { 'id': element.id }) }}">Modifier</a>
+                    {% endif %}
+
+                    {% if workflow_can(element, constant('App\\Workflow\\EstimateDefinitionWorflow::TRANS_ACCEPT')) %}
+                        <a href="{{ path('app_admin_estimate_accept', { 'id': element.id }) }}">Accepter</a>
+                    {% endif %}
+
+                    {% if workflow_can(element, constant('App\\Workflow\\EstimateDefinitionWorflow::TRANS_CANCEL')) %}
+                        <a href="{{ path('app_admin_estimate_cancel', { 'id': element.id }) }}">Annuler</a>
+                    {% endif %}
+
+                    <a href="{{ path('app_admin_estimate_display', { 'id': element.id }) }}">Voir</a>
+
+                    {% if workflow_has_marked_place(element, constant('App\\Workflow\\EstimateDefinitionWorflow::PLACE_ACCEPTED')) %}
+                        <a href="{{ path('app_admin_estimate_bill', { 'id': element.id }) }}">Facturer</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr><th colspan="7">Aucun élément</th></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

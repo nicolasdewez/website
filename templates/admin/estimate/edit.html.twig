@@ -1,0 +1,29 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{{ parent() }} - Modifier un devis{% endblock %}
+
+{% block body %}
+    <a href="{{ path('app_admin_estimate_list') }}">Liste des devis</a>
+
+    <h2>Modifier un devis</h2>
+
+    {{ form(form) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(function() {
+            new EstimateEdit(
+                $('.collection'),
+                'estimate_lines',
+                $('.glyphicon-plus'),
+                $('.glyphicon-trash'),
+                $('.collection-quantity'),
+                $('.collection-unit-price'),
+                $('.collection-total'),
+                $('#estimate_total')
+            );
+        });
+    </script>
+{% endblock %}

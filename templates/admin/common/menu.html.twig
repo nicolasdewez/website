@@ -3,8 +3,9 @@
         {{ include('admin/common/menu-item.html.twig', { 'title': 'Accueil', 'pathInfo': app.request.pathInfo, 'url': path('app_admin_home'), 'strict': true }) }}
         {{ include('admin/common/menu-item.html.twig', { 'title': 'Tags', 'pathInfo': app.request.pathInfo, 'url': path('app_admin_tag_list') }) }}
         {{ include('admin/common/menu-item.html.twig', { 'title': 'Articles', 'pathInfo': app.request.pathInfo, 'url': path('app_admin_post_list') }) }}
-        {{ include('admin/common/menu-item.html.twig', { 'title': 'Devis', 'pathInfo': app.request.pathInfo, 'url': path('app_admin_post_list') }) }}
-        {{ include('admin/common/menu-item.html.twig', { 'title': 'Factures', 'pathInfo': app.request.pathInfo, 'url': path('app_admin_post_list') }) }}
-        {{ include('admin/common/menu-item.html.twig', { 'title': 'Bilan', 'pathInfo': app.request.pathInfo, 'url': path('app_admin_post_list') }) }}
+        {{ include('admin/common/menu-item.html.twig', { 'title': 'Clients', 'pathInfo': app.request.pathInfo, 'url': path('app_admin_customer_list') }) }}
+        {{ include('admin/common/menu-item.html.twig', { 'title': 'Devis', 'pathInfo': app.request.pathInfo, 'url': path('app_admin_estimate_list') }) }}
+        {{ include('admin/common/menu-item.html.twig', { 'title': 'Factures', 'pathInfo': app.request.pathInfo, 'url': path('app_admin_bill_list') }) }}
+        {{ include('admin/common/menu-item.html.twig', { 'title': 'Bilan', 'pathInfo': app.request.pathInfo, 'url': path('app_admin_balance') }) }}
     </ul>
 </div>

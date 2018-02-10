@@ -1,0 +1,47 @@
+framework:
+    workflows:
+        estimate:
+            type: 'state_machine'
+            marking_store:
+                type: 'single_state'
+                arguments:
+                    - 'state'
+            supports:
+                - App\Entity\Estimate
+            places:
+                - in-progress
+                - accepted
+                - canceled
+            transitions:
+                edit:
+                    from: in-progress
+                    to: in-progress
+                accept:
+                    from: in-progress
+                    to: accepted
+                cancel:
+                    from: [in-progress, accepted]
+                    to: canceled
+
+        order:
+            type: 'state_machine'
+            marking_store:
+                type: 'single_state'
+                arguments:
+                    - 'state'
+            supports:
+                - App\Entity\Bill
+            places:
+                - in-progress
+                - acquitted
+                - canceled
+            transitions:
+                edit:
+                    from: in-progress
+                    to: in-progress
+                acquit:
+                    from: in-progress
+                    to: acquitted
+                cancel:
+                    from: in-progress
+                    to: canceled
